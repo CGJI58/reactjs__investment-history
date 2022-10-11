@@ -1,24 +1,23 @@
+import { get } from "@polygon.io/client-js/lib/rest/transport/request";
 import { useState } from "react";
 import { POLYGON_API_KEY } from "./APIKEY";
 
-const CallAPIBtn = ({ stockList }) => {
-  const BUTTON_INTERVAL = 3;
+const CallApiBtn = ({ stockList }) => {
+  const BUTTON_INTERVAL = 60;
 
   const [activateBtn, setActivateBtn] = useState(false);
   const [coolDown, setCoolDown] = useState(0);
 
   const onClickBtn = () => {
-    CallAPI(stockList);
+    CallApi();
     controlBtn();
   };
 
-  const CallAPI = (stockList) => {
+  const CallApi = () => {
     stockList.map((item) =>
       fetch(
         `https://api.polygon.io/v2/aggs/ticker/${item}/prev?adjusted=true&apiKey=${POLYGON_API_KEY}`
-      )
-        .then((response) => console.log(response.json()))
-        .catch((error) => console.log("error:", error))
+      ).then((response) => console.log(response.json()))
     );
   };
 
@@ -47,4 +46,4 @@ const CallAPIBtn = ({ stockList }) => {
   );
 };
 
-export default CallAPIBtn;
+export default CallApiBtn;

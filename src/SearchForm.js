@@ -1,5 +1,5 @@
 import { useState } from "react";
-import CallAPIBtn from "./CallAPIBtn";
+import CallApiBtn from "./CallApiBtn";
 
 const SearchForm = () => {
   const [items, setItems] = useState([]);
@@ -18,10 +18,10 @@ const SearchForm = () => {
 
   return (
     <div>
-      <strong>
-        최대 5개의 티커를 한번에 검색할 수 있습니다(API 호출 횟수 제한: 1분에
-        최대 5개)
-      </strong>
+      <strong>최대 5개까지 한번에 호출 가능</strong>
+      <br />
+      <strong>분당 5개 호출 가능</strong>
+      <hr />
       <form onSubmit={onSubmit}>
         <input
           placeholder="Ticker"
@@ -37,7 +37,8 @@ const SearchForm = () => {
         ))}
       </ol>
       {items.length ? <button onClick={onClickClearBtn}>Clear</button> : null}
-      <CallAPIBtn stockList={items} />
+      <hr />
+      <CallApiBtn stockList={items} />
     </div>
   );
 };
