@@ -1,27 +1,25 @@
 import { useState } from "react";
-import CallApiBtn from "./CallApiBtn";
 
-const SearchForm = () => {
+const SearchForm = ({ setStockList }) => {
   const [items, setItems] = useState([]);
   const [inputValue, setInputValue] = useState("");
 
   const onSubmit = (event) => {
     event.preventDefault();
-    if (items.length < 5)
+    if (items.length < 5) {
       setItems((current) => [...current, event.target[0].value.toUpperCase()]);
+      setStockList(() => items);
+    }
     setInputValue("");
   };
 
-  const onClickClearBtn = () => {
-    setItems([]);
+  const onClear = () => {
+    setItems(() => []);
+    setStockList(() => items);
   };
 
   return (
     <div>
-      <strong>최대 5개까지 한번에 호출 가능</strong>
-      <br />
-      <strong>분당 5개 호출 가능</strong>
-      <hr />
       <form onSubmit={onSubmit}>
         <input
           placeholder="Ticker"
@@ -36,9 +34,7 @@ const SearchForm = () => {
           <li key={index}>{item}</li>
         ))}
       </ol>
-      {items.length ? <button onClick={onClickClearBtn}>Clear</button> : null}
-      <hr />
-      <CallApiBtn stockList={items} />
+      {items.length ? <button onClick={onClear}>Clear</button> : null}
     </div>
   );
 };
