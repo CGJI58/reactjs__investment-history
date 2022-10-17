@@ -1,21 +1,19 @@
 import { useState } from "react";
 
-const SearchForm = ({ setStockList }) => {
-  const [items, setItems] = useState([]);
+const SearchForm = ({ setStockList, stockList }) => {
   const [inputValue, setInputValue] = useState("");
 
   const onSubmit = (event) => {
     event.preventDefault();
-    if (items.length < 5) {
-      setItems((current) => [...current, event.target[0].value.toUpperCase()]);
-      setStockList(() => items);
+    const newItem = event.target[0].value.toUpperCase();
+    if (stockList.length < 5) {
+      setStockList((current) => [...current, newItem]);
     }
     setInputValue("");
   };
 
   const onClear = () => {
-    setItems(() => []);
-    setStockList(() => items);
+    setStockList(() => []);
   };
 
   return (
@@ -30,11 +28,11 @@ const SearchForm = ({ setStockList }) => {
         <button type="submit">Add</button>
       </form>
       <ol>
-        {items.map((item, index) => (
+        {stockList.map((item, index) => (
           <li key={index}>{item}</li>
         ))}
       </ol>
-      {items.length ? <button onClick={onClear}>Clear</button> : null}
+      {stockList.length ? <button onClick={onClear}>Clear</button> : null}
     </div>
   );
 };

@@ -11,7 +11,7 @@ function App() {
   return (
     <div>
       <strong>1분에 한 번, 최대 5개까지 한번에 호출 가능</strong>
-      <SearchForm setStockList={setStockList} />
+      <SearchForm setStockList={setStockList} stockList={stockList} />
       <CallApiBtn stockList={stockList} setApiResponse={setApiResponse} />
       <SearchResult apiResponse={apiResponse} />
     </div>
