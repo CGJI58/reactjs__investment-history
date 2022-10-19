@@ -12,10 +12,6 @@ const SearchForm = ({ setStockList, stockList }) => {
     setInputValue("");
   };
 
-  const onClear = () => {
-    setStockList(() => []);
-  };
-
   return (
     <div>
       <form onSubmit={onSubmit}>
@@ -27,12 +23,6 @@ const SearchForm = ({ setStockList, stockList }) => {
         />
         <button type="submit">Add</button>
       </form>
-      <ol>
-        {stockList.map((item, index) => (
-          <li key={index}>{item}</li>
-        ))}
-      </ol>
-      {stockList.length ? <button onClick={onClear}>Clear</button> : null}
     </div>
   );
 };
