@@ -20,6 +20,7 @@ const SearchForm = ({ setStockList, stockList }) => {
           onChange={(event) => setInputValue(event.target.value)}
           value={inputValue}
           required={true}
+          type="string"
         />
         <button type="submit">Add</button>
       </form>

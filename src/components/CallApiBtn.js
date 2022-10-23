@@ -2,7 +2,7 @@ import { useState } from "react";
 import { POLYGON_API_KEY } from "../APIKEY";
 
 const CallApiBtn = ({ stockList, setApiResponse }) => {
-  const BUTTON_INTERVAL = 60;
+  const CALL_INTERVAL = 60;
 
   const [activateBtn, setActivateBtn] = useState(false);
   const [coolDown, setCoolDown] = useState(0);
@@ -36,8 +36,7 @@ const CallApiBtn = ({ stockList, setApiResponse }) => {
 
   const controlBtn = () => {
     setActivateBtn(true);
-
-    setCoolDown(BUTTON_INTERVAL);
+    setCoolDown(CALL_INTERVAL);
     const timer = setInterval(
       () => setCoolDown((current) => current - 1),
       1000
@@ -46,7 +45,7 @@ const CallApiBtn = ({ stockList, setApiResponse }) => {
     setTimeout(() => {
       setActivateBtn(false);
       clearInterval(timer);
-    }, BUTTON_INTERVAL * 1000);
+    }, CALL_INTERVAL * 1000);
   };
 
   return (

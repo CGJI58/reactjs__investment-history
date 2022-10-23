@@ -1,25 +1,15 @@
-import { useState } from "react";
-import "./App.css";
-import SearchForm from "./components/SearchForm";
-import SearchResult from "./components/SearchResult";
-import CallApiBtn from "./components/CallApiBtn";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import Home from "./routes/Home";
+import Details from "./routes/Details";
 
 function App() {
-  const [stockList, setStockList] = useState([]);
-  const [apiResponse, setApiResponse] = useState([]);
-
   return (
-    <div>
-      <strong>1분에 한 번, 최대 5개까지 한번에 호출 가능</strong>
-      <SearchForm setStockList={setStockList} stockList={stockList} />
-      <CallApiBtn setApiResponse={setApiResponse} stockList={stockList} />
-      <SearchResult
-        setApiResponse={setApiResponse}
-        apiResponse={apiResponse}
-        setStockList={setStockList}
-        stockList={stockList}
-      />
-    </div>
+    <Router>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/details/:id" element={<Details />} />
+      </Routes>
+    </Router>
   );
 }
 
