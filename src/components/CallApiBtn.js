@@ -1,5 +1,4 @@
 import { useState } from "react";
-import { POLYGON_API_KEY } from "../APIKEY";
 
 const CallApiBtn = ({ stockList, setApiResponse }) => {
   const CALL_INTERVAL = 60;
@@ -20,7 +19,7 @@ const CallApiBtn = ({ stockList, setApiResponse }) => {
           const json = JSON.stringify(
             await (
               await fetch(
-                `https://api.polygon.io/v2/aggs/ticker/${item}/prev?adjusted=true&apiKey=${POLYGON_API_KEY}`
+                `https://api.polygon.io/v2/aggs/ticker/${item}/prev?adjusted=true&apiKey=${process.env.REACT_APP_POLYGON_API_KEY}`
               )
             ).json()
           );
