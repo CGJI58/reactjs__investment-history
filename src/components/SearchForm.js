@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-const SearchForm = ({ setStockList, stockList }) => {
+const SearchForm = ({ setApiResponse, setStockList, stockList }) => {
   const [inputValue, setInputValue] = useState("");
 
   const onSubmit = (event) => {
@@ -10,6 +10,11 @@ const SearchForm = ({ setStockList, stockList }) => {
       setStockList((current) => [...current, newItem]);
     }
     setInputValue("");
+  };
+
+  const onClear = () => {
+    setStockList([]);
+    setApiResponse([]);
   };
 
   return (
@@ -23,6 +28,7 @@ const SearchForm = ({ setStockList, stockList }) => {
           type="string"
         />
         <button type="submit">Add</button>
+        {stockList.length ? <button onClick={onClear}>Clear</button> : null}
       </form>
     </div>
   );

@@ -7,16 +7,16 @@ const SearchResult = ({
   setApiResponse,
   apiResponse,
 }) => {
-  const handleApiResponse = (item) => {
+  const handleApiResponse = (item, index) => {
     console.log(item);
     try {
       const { results, request_id } = JSON.parse(item);
       const { T, c } = results[0];
       return (
-        <tr>
-          <Link to={`/details/${request_id}`}>
-            <td>{T}</td>
-          </Link>
+        <tr key={index}>
+          <td>
+            <Link to={`/details/${request_id}`}>{T}</Link>
+          </td>
           <td>{c}</td>
         </tr>
       );
@@ -25,19 +25,15 @@ const SearchResult = ({
     }
   };
 
-  const handleStockList = (item) => {
+  const handleStockList = (item, index) => {
     return (
-      <tr>
+      <tr key={index}>
         <td>{item}</td>
         <td>-</td>
       </tr>
     );
   };
 
-  const onClear = () => {
-    setStockList([]);
-    setApiResponse([]);
-  };
   return (
     <div>
       <table>
@@ -49,13 +45,10 @@ const SearchResult = ({
         </thead>
         <tbody>
           {apiResponse.length
-            ? apiResponse.map((item) => handleApiResponse(item))
-            : stockList.map((item) => handleStockList(item))}
+            ? apiResponse.map((item, index) => handleApiResponse(item, index))
+            : stockList.map((item, index) => handleStockList(item, index))}
         </tbody>
       </table>
-      <div>
-        {stockList.length ? <button onClick={onClear}>Clear</button> : null}
-      </div>
     </div>
   );
 };

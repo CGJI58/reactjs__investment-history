@@ -11,10 +11,12 @@ function Home() {
 
   return (
     <div>
-      <strong className={styles.strong}>
-        1분에 한 번, 최대 5개까지 한번에 호출 가능
-      </strong>
-      <SearchForm setStockList={setStockList} stockList={stockList} />
+      <strong>1분에 한 번, 최대 5개까지 한번에 호출 가능</strong>
+      <SearchForm
+        setApiResponse={setApiResponse}
+        setStockList={setStockList}
+        stockList={stockList}
+      />
       <CallApiBtn setApiResponse={setApiResponse} stockList={stockList} />
       <SearchResult
         setApiResponse={setApiResponse}
